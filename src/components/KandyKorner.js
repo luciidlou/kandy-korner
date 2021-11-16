@@ -1,12 +1,14 @@
-import { LocationList } from "./locations/LocationList"
-import { ProductList } from "./products/ProductList"
+import react from "react"
+import { ApplicationViews } from "./ApplicationViews"
+import { NavBar } from "./nav/NavBar"
+
 
 export const KandyKorner = () => {
     return (
         <>
+        <NavBar />
         <h1>Kandy Korner 🍭</h1>
-        <LocationList />
-        <ProductList />
+        <ApplicationViews />
         </>
     )
 }
