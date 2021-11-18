@@ -1,0 +1,8 @@
+.product {
+    border-bottom: 1px solid slategray;
+    display: flex;
+    justify-content: space-between;
+}
+.prompt {
+    margin-top: auto;
+}

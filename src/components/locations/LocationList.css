@@ -1,0 +1,14 @@
+.location {
+    border-bottom: 1px solid slategray;
+    display: flex;
+    justify-content: space-between;
+}
+.location__name {
+    border-bottom: 1px dotted black;
+    max-width: fit-content;
+    margin: 10px 0;
+}
+.product-location-btn {
+    margin-top: auto;
+    margin-bottom: 5px;
+}

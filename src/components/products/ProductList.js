@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
+import "./ProductList.css"
 export const ProductList = () => {
     const [products, setProducts] = useState([])
 
@@ -20,7 +21,14 @@ export const ProductList = () => {
             <h2>List of products</h2>
             {
                 products.map(product => {
-                    return <p key={`product--${product.id}`}>{`${product.name} are of the ${product.productType.type} variety, and they cost ${product.price}`}</p>
+                    return <section key={`product--${product.id}`} className="product">
+                        <div className="product__info">
+                            <div className="product__name">{product.name}</div>
+                            <div className="product__type">Type: {product.productType.type}</div>
+                            <div className="product__price">Price: {product.price}</div>
+                        </div>
+                        <div className="prompt"><Link to="/locations">Please choose a location to purchase from!</Link></div>
+                    </section>
                 })
             }
         </>
