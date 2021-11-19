@@ -26,7 +26,7 @@ export const LocationList = () => {
                             <div className="location__address">{location.streetAddress}</div>
                             <div className="location__cityState">{location.cityState}</div>
                         </div>
-                        <button className="product-location-btn" onClick={() => { history.push(`/locations/${location.id}`) }}>Purchase from this location</button>
+                        <button className="product-location-btn" onClick={() => { history.push(`/locations/${location.id}`) }}>Shop at this location</button>
                     </section>
                 })
             }

@@ -74,6 +74,7 @@ export const EmployeeForm = () => {
                     <select
                         htmlFor="location"
                         className="form-control"
+                        required
                         onChange={
                             (event) => {
                                 const copy = { ...newHire }
@@ -83,7 +84,7 @@ export const EmployeeForm = () => {
                         <option value={0}>Select a location...</option>
                         {
                             locations.map(location => {
-                                return <option key={`location--${location.id}`} value={location.id}>{location.address}</option>
+                                return <option key={`location--${location.id}`} value={location.id}>{location.name} Store</option>
                             })
                         }
                     </select>
@@ -122,9 +123,10 @@ export const EmployeeForm = () => {
                 <div className="form-group">
                     <label htmlFor="hourlyRate">Hourly Rate:</label>
                     <input
-                        required autoFocus
+                        required
                         type="number"
-                        step="any"
+                        defaultValue={14.25}
+                        step={.25}
                         className="form-control"
                         placeholder="Enter an hourly rate"
                         onChange={

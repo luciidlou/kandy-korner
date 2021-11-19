@@ -1,0 +1,10 @@
+.employee {
+    margin: 20px 0;
+    border-bottom: 1px solid slategray;
+}
+
+
+.fire-btn {
+    display: block;
+    margin: 10px 0;
+}
