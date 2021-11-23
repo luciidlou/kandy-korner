@@ -30,6 +30,10 @@ export const getPurchasesByCurrentCustomer = (currentCustomer) => {
     return fetch(`http://localhost:8088/purchases?customerId=${currentCustomer}&_expand=productLocation`)
         .then(res => res.json())
 }
+export const getCustomerPurchases = () => {
+    return fetch(`http://localhost:8088/customers?_embed=purchases`)
+        .then(res => res.json())
+}
 
 export const postNewHire = (newHireObject) => {
     const fetchOption = {

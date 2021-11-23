@@ -36,13 +36,14 @@ export const Location = () => {
                 </div>
                 <div className="quantity">
                     <label htmlFor="quantity">Quantity: </label>
-                    <input type="number" min="1" defaultValue="1" className="quantity-input" onChange={
-                        (event) => {
-                            const copy = { ...newPurchase }
-                            copy.quantity = event.target.value
-                            update(copy)
-                        }
-                    } />
+                    <input type="number" min="1" defaultValue="1" className="quantity-input"
+                        onChange={
+                            (event) => {
+                                const copy = { ...newPurchase }
+                                copy.quantity = event.target.value
+                                update(copy)
+                            }
+                        } />
                 </div>
 
                 <button className="purchase-btn"
@@ -60,7 +61,7 @@ export const Location = () => {
                                 window.alert(`Your purchase of ${productLocation.product.name} was successful!`)
                                 history.push("/myOrders")
                             })
-                    }}><span>Purchase this item</span></button>
+                    }}><span>Purchase this item 😎</span></button>
             </section>
         })
     )

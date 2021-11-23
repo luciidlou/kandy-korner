@@ -1,11 +1,12 @@
 import { useEffect } from "react"
 import { useState } from "react/cjs/react.development"
-import { getAllCustomers, getAllPurchases } from "../ApiManager"
+import { getAllCustomers, getAllPurchases, getCustomerPurchases } from "../ApiManager"
 import "./CustomerList.css"
 
 export const CustomerList = () => {
     const [customers, setCustomers] = useState([])
     const [purchases, setPurchases] = useState([])
+    const [customerPurchases, updateCustomerPurchases] = useState([])
 
     useEffect(
         () => {
@@ -22,6 +23,13 @@ export const CustomerList = () => {
                 .then((data) => {
                     setPurchases(data)
                 })
+        },
+        []
+    )
+    useEffect(
+        () => {
+            getCustomerPurchases()
+            .then(updateCustomerPurchases)
         },
         []
     )
