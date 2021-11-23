@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { getAllLocations, getAllProducts, getPurchasesByCurrentCustomer } from "../ApiManager"
 import "./OrderList.css"
 
 export const OrderList = () => {
@@ -12,8 +13,7 @@ export const OrderList = () => {
     useEffect(
         () => {
             console.log("fetching purchases...")
-            return fetch(`http://localhost:8088/purchases?customerId=${currentCustomer}&_expand=productLocation`)
-                .then(res => res.json())
+           getPurchasesByCurrentCustomer(currentCustomer)
                 .then((purchases) => {
                     console.log("updating purchases")
                     setPurchases(purchases)
@@ -24,8 +24,7 @@ export const OrderList = () => {
     useEffect(
         () => {
             console.log("fetching products...")
-            return fetch(`http://localhost:8088/products`)
-                .then(res => res.json())
+            getAllProducts()
                 .then((products) => {
                     console.log("updating products")
                     setProducts(products)
@@ -36,8 +35,7 @@ export const OrderList = () => {
     useEffect(
         () => {
             console.log("fetching locations...")
-            return fetch(`http://localhost:8088/locations`)
-                .then(res => res.json())
+            getAllLocations()
                 .then((locations) => {
                     console.log("updating locations")
                     setLocations(locations)
@@ -52,18 +50,17 @@ export const OrderList = () => {
             {
                 purchases.map(purchase => {
                     const foundProduct = products.find(product => product.id === purchase.productLocation.productId) || {}
-                    const foundLocation = locations.find(location => location.id === purchase.productLocation.locationId)
+                    const foundLocation = locations.find(location => location.id === purchase.productLocation.locationId) || {}
                     return <section key={`order--${purchase.id}`} className="order">
-                        <div className="order__item">{purchase.quantity} {foundProduct.name}</div>
+                        <div className="order__item">{purchase.quantity} {foundProduct.name} (${foundProduct.price} ea.)</div>
                         <div className="order__total">Total: {purchase.total.toLocaleString('en-US', {
                             style: 'currency',
                             currency: 'USD',
                         })}</div>
-                        <div className="order__location">Purchased from the {foundLocation?.name} Store on {purchase.datePurchased}</div>
+                        <div className="order__location">Purchased from the {foundLocation.name} Store on {purchase.datePurchased}</div>
                     </section>
                 })
             }
         </>
     )
-
 }

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { getAllLocations } from "../ApiManager";
 import "./LocationList.css"
 export const LocationList = () => {
     const [locations, setLocations] = useState([])
     const history = useHistory()
     useEffect(
         () => {
-            fetch("http://localhost:8088/locations")
-                .then(res => res.json())
+            getAllLocations()
                 .then(
                     (data) => {
                         setLocations(data)

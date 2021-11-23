@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getAllProducts } from "../ApiManager";
 import "./ProductList.css"
 export const ProductList = () => {
     const [products, setProducts] = useState([])
 
     useEffect(
         () => {
-            fetch("http://localhost:8088/products?_expand=productType")
-                .then(res => res.json())
+            getAllProducts()
                 .then(
                     (data) => {
                         setProducts(data)
-                    }
-                )
+                    })
         },
         []
     )
@@ -24,10 +23,10 @@ export const ProductList = () => {
                     return <section key={`product--${product.id}`} className="product">
                         <div className="product__info">
                             <div className="product__name">{product.name}</div>
-                            <div className="product__type">Type: {product.productType.type}</div>
+                            <div className="product__type">Type: {product.productType?.type}</div>
                             <div className="product__price">Price: {product.price}</div>
                         </div>
-                        <div className="prompt"><Link to="/locations">Please choose a location to purchase from!</Link></div>
+                        <div className="prompt"><Link to={`/products/${product.id}/locations`}>{`See stores that stock ${product.name}!`}</Link></div>
                     </section>
                 })
             }

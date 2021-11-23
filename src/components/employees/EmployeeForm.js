@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { postNewHire } from "../ApiManager"
 import "./EmployeeForm.css"
 export const EmployeeForm = () => {
     const [newHire, update] = useState({
@@ -34,14 +35,7 @@ export const EmployeeForm = () => {
             hourlyRate: newHire.hourlyRate
         }
 
-        const fetchOption = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newEmployee)
-        }
-        return fetch("http://localhost:8088/employees", fetchOption)
+        postNewHire(newEmployee)
             .then(() => {
                 history.push("/employees")
             })
